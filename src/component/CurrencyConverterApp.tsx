@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import '../css/App.css';
 import {useCnbApi} from "../hook/CnbApiHook";
 import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 import {CurrencyInfo} from "../model/CurrencyInfo";
@@ -15,7 +14,6 @@ const CurrencyConverterApp: React.FC = () => {
 
     useEffect(() => {
         fetchRates().then(resp => {
-            console.log("resp",resp)
             const respLines: string[] = resp.data.split("\n");
             const currenciesLines = respLines.slice(2, respLines.length - 1);
 
@@ -39,7 +37,7 @@ const CurrencyConverterApp: React.FC = () => {
     };
 
     return (
-        <div className="App">
+        <div>
             <h1>Currency converter</h1>
             {fetchedCurrencies &&
             <CurrencyTable

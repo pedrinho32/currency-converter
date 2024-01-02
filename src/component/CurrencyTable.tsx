@@ -1,5 +1,6 @@
 import React from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
+import {BodyRow, Table, TableCell, TableHead} from "../styled/Styled";
 
 export interface CurrencyTableProps {
     headerRow: CurrencyInfo;
@@ -10,33 +11,28 @@ const CurrencyTable: React.FC<CurrencyTableProps> = (props) => {
     const {headerRow, currencies} = props;
 
     return (
-        <table>
-            <thead>
-            <tr>
-                <td>{headerRow.country}</td>
-                <td>{headerRow.currency}</td>
-                <td>{headerRow.amount}</td>
-                <td>{headerRow.code}</td>
-                <td>{headerRow.rate}</td>
-            </tr>
-            </thead>
+        <Table>
+            <TableHead>
+                <tr>
+                    <TableCell>{headerRow.country}</TableCell>
+                    <TableCell>{headerRow.currency}</TableCell>
+                    <TableCell>{headerRow.amount}</TableCell>
+                    <TableCell>{headerRow.code}</TableCell>
+                    <TableCell>{headerRow.rate}</TableCell>
+                </tr>
+            </TableHead>
             <tbody>
             {currencies.map(currencyInfo => (
-                <tr key={currencyInfo.code}>
-                    <td>{currencyInfo.country}</td>
-                    <td>{currencyInfo.currency}</td>
-                    <td>{currencyInfo.amount}</td>
-                    <td>{currencyInfo.code}</td>
-                    <td>{currencyInfo.rate}</td>
-                </tr>
+                <BodyRow key={currencyInfo.code}>
+                    <TableCell>{currencyInfo.country}</TableCell>
+                    <TableCell>{currencyInfo.currency}</TableCell>
+                    <TableCell>{currencyInfo.amount}</TableCell>
+                    <TableCell>{currencyInfo.code}</TableCell>
+                    <TableCell>{currencyInfo.rate}</TableCell>
+                </BodyRow>
             ))}
-            <tr>
-                <td>
-
-                </td>
-            </tr>
             </tbody>
-        </table>
+        </Table>
     );
 };
 
