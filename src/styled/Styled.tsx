@@ -13,6 +13,7 @@ export const Table = styled.table`
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     margin-left: auto;
     margin-right: auto;
+    border-radius: 5px;
 `;
 
 export const TableHead = styled.thead`
@@ -38,7 +39,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-    text-align: left;
+    text-align: right;
     padding: 3px 3px;
     width: 100px;
     margin-left: 20px;
@@ -47,9 +48,10 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select`
-    text-align: left;
+    text-align: center;
     padding: 3px 3px;
     margin-left: 20px;
+    width: 100px;
     border-radius: 5px;
 `;
 
@@ -57,11 +59,18 @@ export const FormRow = styled.div`
     padding: 5px 15px;
 `;
 
-export const Form = styled.form`
+export const FormWrapper = styled.form`
     display: inline-block;
-     text-align: left;
+    text-align: left;
 `;
 
 export const Button = styled.button`
     border-radius: 5px;
+    height: 25px;
+    width: 250px
+`;
+
+export const ResultPanel = styled.div`
+    height: 20px;
+    text-align: center;
 `;
