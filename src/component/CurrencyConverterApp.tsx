@@ -52,7 +52,7 @@ const CurrencyConverterApp: React.FC = () => {
                 />
                 {resultMessage &&
                 <ResultPanel
-                    prefixText={resultMessage?.prefixText}
+                    messageText={resultMessage?.messageText}
                     resultAmount={resultMessage?.resultAmount}
                     currency={resultMessage?.currency}
                 />

@@ -2,20 +2,18 @@ import React from "react";
 import {ResultWrapperDiv} from "../styled/Styled";
 
 export interface ResultMessage {
-    prefixText?: string;
+    messageText?: string;
     resultAmount?: string;
     currency?: string;
 }
 
 const ResultPanel: React.FC<ResultMessage> = (props) => {
-    const {prefixText, resultAmount, currency} = props;
+    const {messageText, resultAmount, currency} = props;
 
     return (
         <ResultWrapperDiv>
-            {prefixText}
-            <b>{resultAmount}</b>
-            &nbsp;
-            <b>{currency}</b>
+            {messageText}
+            <b>{resultAmount}&nbsp;{currency}</b>
         </ResultWrapperDiv>
     );
 };

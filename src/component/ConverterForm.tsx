@@ -29,14 +29,14 @@ const ConverterForm: React.FC<FormProps> = (props) => {
             const resultAmount = (Number(inputAmount) ?? 0) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
-                prefixText: `${inputAmount.toLocaleString()} CZK = `,
+                messageText: `${inputAmount.toLocaleString()} CZK = `,
                 resultAmount: roundedResultAmount.toLocaleString(),
                 currency: selectedCurrencyCode
             });
         } else if (!inputAmount) {
-            setResultMessage({prefixText: "Please type amount to convert"})
+            setResultMessage({messageText: "Please input amount to convert"})
         } else {
-            setResultMessage({prefixText: "Currency conversion failed"})
+            setResultMessage({messageText: "Currency conversion failed"})
         }
     };
 
