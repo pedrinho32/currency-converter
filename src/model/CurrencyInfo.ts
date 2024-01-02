@@ -1,7 +1,7 @@
 export interface CurrencyInfo {
     country: string;
     currency: string;
-    amount: number;
+    amount: number | string;
     code: string;
-    rate: number;
+    rate: number | string;
 }
