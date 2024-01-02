@@ -1,20 +1,17 @@
-import {Button, FormRow, FormWrapper, Input, Label, ResultPanel, Select} from "../styled/Styled";
-import React, {useState} from "react";
+import {Button, FormRow, FormWrapper, Input, Label, ResultWrapperDiv, Select} from "../styled/Styled";
+import React, {FormEvent, useState} from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
+import {ResultMessage} from "./ResultPanel";
 
 interface FormProps {
     currencies: CurrencyInfo[];
+    setResultMessage:  React.Dispatch<React.SetStateAction<ResultMessage | undefined>>;
 }
 
-interface ResultMessage {
-    prefixText: string;
-    resultAmount?: string;
-}
-
-const ConverterForm: React.FC<FormProps> = ({currencies}) => {
+const ConverterForm: React.FC<FormProps> = (props) => {
+    const {currencies, setResultMessage} = props;
 
     const [inputAmount, setInputAmount] = useState<number>(0);
-    const [resultMessage, setResultMessage] = useState<ResultMessage>();
     const [selectedCurrencyCode, setSelectedCurrencyCode] = useState<string>("EUR");
 
     const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +22,16 @@ const ConverterForm: React.FC<FormProps> = ({currencies}) => {
         }
     }
 
-    const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (ev: React.FormEvent<HTMLFormElement> | FormEvent<HTMLButtonElement>) => {
         ev.preventDefault();
         const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode);
-        if (targetCurrency && inputAmount) {
-            const resultAmount = inputAmount / Number(targetCurrency.rate) / Number(targetCurrency.amount);
+        if (targetCurrency) {
+            const resultAmount = (inputAmount ?? 0) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
-                prefixText: `${inputAmount} CZK equals to `,
-                resultAmount: `${roundedResultAmount} ${selectedCurrencyCode}`
+                prefixText: `${inputAmount.toLocaleString()} CZK = `,
+                resultAmount: roundedResultAmount.toLocaleString(),
+                currency: selectedCurrencyCode
             });
         } else {
             setResultMessage({prefixText: "Currency conversion failed"})
@@ -51,7 +49,6 @@ const ConverterForm: React.FC<FormProps> = ({currencies}) => {
                 <Input
                     value={inputAmount}
                     onChange={handleInputChange}
-                    onFocus={() => setResultMessage(undefined)}
                 />
             </FormRow>
             <FormRow>
@@ -71,15 +68,9 @@ const ConverterForm: React.FC<FormProps> = ({currencies}) => {
                 </Select>
             </FormRow>
             <FormRow>
-                <Button>
+                <Button onSubmit={handleSubmit}>
                     Calculate
                 </Button>
-            </FormRow>
-            <FormRow>
-                <ResultPanel>
-                    {resultMessage?.prefixText}
-                    <b>{resultMessage?.resultAmount}</b>
-                </ResultPanel>
             </FormRow>
         </FormWrapper>
     );

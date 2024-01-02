@@ -3,7 +3,8 @@ import {useCnbApi} from "../hook/CnbApiHook";
 import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 import {CurrencyInfo} from "../model/CurrencyInfo";
 import {Wrapper} from "../styled/Styled";
-import ConverterForm from "./Form";
+import ResultPanel, {ResultMessage} from "./ResultPanel";
+import ConverterForm from "./ConverterForm";
 
 interface FetchedCurrencies extends CurrencyTableProps {
     dateValid: string;
@@ -13,6 +14,7 @@ const CurrencyConverterApp: React.FC = () => {
     const {fetchRates} = useCnbApi();
 
     const [fetchedCurrencies, setFetchedCurrencies] = useState<FetchedCurrencies>();
+    const [resultMessage, setResultMessage] = useState<ResultMessage>();
 
     useEffect(() => {
         fetchRates().then(resp => {
@@ -40,11 +42,21 @@ const CurrencyConverterApp: React.FC = () => {
 
     return (
         <Wrapper>
-            <h1>Currency converter</h1>
+            <h1>CURRENCY CONVERTER</h1>
 
             {fetchedCurrencies &&
             <>
-                <ConverterForm currencies={fetchedCurrencies.currencies}/>
+                <ConverterForm
+                    currencies={fetchedCurrencies.currencies}
+                    setResultMessage={setResultMessage}
+                />
+                {resultMessage &&
+                <ResultPanel
+                    prefixText={resultMessage?.prefixText}
+                    resultAmount={resultMessage?.resultAmount}
+                    currency={resultMessage?.currency}
+                />
+                }
                 <CurrencyTable
                     currencies={fetchedCurrencies.currencies}
                     headerRow={fetchedCurrencies.headerRow}

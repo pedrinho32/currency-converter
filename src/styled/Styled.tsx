@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     text-align: center;
+    overflow:hidden;
 `;
 
 export const Table = styled.table`
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 20px 0;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
@@ -17,8 +18,8 @@ export const Table = styled.table`
 `;
 
 export const TableHead = styled.thead`
-    background-color: #EEE8AA;
-    color: #B8860B;
+    background-color: #D6DEE9;
+    color: #1F618D;
     text-align: center;
     font-weight: bold;
 `;
@@ -41,10 +42,9 @@ export const Label = styled.label`
 export const Input = styled.input`
     text-align: right;
     padding: 3px 3px;
-    width: 100px;
+    width: 92px;
     margin-left: 20px;
     border-radius: 5px;
-
 `;
 
 export const Select = styled.select`
@@ -65,12 +65,27 @@ export const FormWrapper = styled.form`
 `;
 
 export const Button = styled.button`
-    border-radius: 5px;
+    border-radius: 10px;
     height: 25px;
-    width: 250px
+    width: 100px;
+    background-color:#1F618D;
+    color: #fff;
+    &:hover,focus {
+        background-color: #008fb3;
+    }
 `;
 
-export const ResultPanel = styled.div`
-    height: 20px;
+export const ResultWrapperDiv = styled.div`
+    width: 400px;
+    height: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: center;
+    padding: 5px;
     text-align: center;
+    font-size: 22px;
+    background-color: #CFE5E1;
+    color: #1F618D;
+    border-radius: 5px;
 `;
