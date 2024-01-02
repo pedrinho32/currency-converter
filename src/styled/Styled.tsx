@@ -20,6 +20,9 @@ export const TableHead = styled.thead`
 
 export const TableCell = styled.td`
     adding: 12px 15px;
+    text-align: center;
+    padding: 12px 15px;
+
 `
 
 export const BodyRow = styled.tr`
