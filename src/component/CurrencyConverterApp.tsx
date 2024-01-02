@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useCnbApi} from "../hook/CnbApiHook";
 import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 import {CurrencyInfo} from "../model/CurrencyInfo";
+import {Button, Form, FormRow, Input, Label, Select, Wrapper} from "../styled/Styled";
 
-interface FetchedCurrencies extends CurrencyTableProps{
+interface FetchedCurrencies extends CurrencyTableProps {
     dateValid: string;
 }
 
@@ -37,15 +38,35 @@ const CurrencyConverterApp: React.FC = () => {
     };
 
     return (
-        <div>
+        <Wrapper>
             <h1>Currency converter</h1>
+            <Form>
+                <FormRow>
+                    <Label>Amount in CZK</Label>
+                    <Input
+                    />
+                </FormRow>
+                <FormRow>
+                    <Label>Target currency</Label>
+                    <Select name="currency">
+                        {fetchedCurrencies?.currencies.map(currency => (
+                            <option>{currency.code}</option>
+                        ))
+                        }
+                    </Select>
+                    <Button>
+                        Calculate
+                    </Button>
+                </FormRow>
+            </Form>
+
             {fetchedCurrencies &&
             <CurrencyTable
                 currencies={fetchedCurrencies.currencies}
                 headerRow={fetchedCurrencies.headerRow}
             />
             }
-        </div>
+        </Wrapper>
     );
 };
 
