@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 export const Table = styled.table`
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-top: 20px;
     font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -26,7 +26,7 @@ export const TableHead = styled.thead`
 
 export const TableCell = styled.td`
     adding: 12px 15px;
-    text-align: center;
+    text-align: left;
     padding: 8px 10px;
 `;
 
@@ -66,7 +66,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const ButtonContainer = styled.div`
-    margin:10px;
+    margin-top:10px;
     display: flex;
     justify-content: center;
 `;
@@ -75,7 +75,7 @@ export const Button = styled.button`
     border-radius: 10px;
     border: none;
     height: 30px;
-    width: 120px;
+    width: 230px;
     background-color:#1F618D;
     color: #fff;
     font-size: 15px;
@@ -88,6 +88,7 @@ export const Button = styled.button`
 export const ResultWrapperDiv = styled.div`
     width: 400px;
     height: auto;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
     display: center;
