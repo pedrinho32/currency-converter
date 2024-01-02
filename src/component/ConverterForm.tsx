@@ -1,18 +1,18 @@
-import {Button, FormRow, FormWrapper, Input, Label, ResultWrapperDiv, Select} from "../styled/Styled";
+import {Button, ButtonContainer, FormRow, FormWrapper, Input, Label, Select} from "../styled/Styled";
 import React, {FormEvent, useState} from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
 import {ResultMessage} from "./ResultPanel";
 
 interface FormProps {
     currencies: CurrencyInfo[];
-    setResultMessage:  React.Dispatch<React.SetStateAction<ResultMessage | undefined>>;
+    setResultMessage: React.Dispatch<React.SetStateAction<ResultMessage | undefined>>;
 }
 
 const ConverterForm: React.FC<FormProps> = (props) => {
     const {currencies, setResultMessage} = props;
 
-    const [inputAmount, setInputAmount] = useState<number>(0);
-    const [selectedCurrencyCode, setSelectedCurrencyCode] = useState<string>("EUR");
+    const [inputAmount, setInputAmount] = useState(0);
+    const [selectedCurrencyCode, setSelectedCurrencyCode] = useState("EUR");
 
     const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = Number(ev.target.value);
@@ -25,14 +25,16 @@ const ConverterForm: React.FC<FormProps> = (props) => {
     const handleSubmit = (ev: React.FormEvent<HTMLFormElement> | FormEvent<HTMLButtonElement>) => {
         ev.preventDefault();
         const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode);
-        if (targetCurrency) {
-            const resultAmount = (inputAmount ?? 0) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
+        if (targetCurrency && inputAmount) {
+            const resultAmount = (Number(inputAmount) ?? 0) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
                 prefixText: `${inputAmount.toLocaleString()} CZK = `,
                 resultAmount: roundedResultAmount.toLocaleString(),
                 currency: selectedCurrencyCode
             });
+        } else if (!inputAmount) {
+            setResultMessage({prefixText: "Please type amount to convert"})
         } else {
             setResultMessage({prefixText: "Currency conversion failed"})
         }
@@ -67,11 +69,11 @@ const ConverterForm: React.FC<FormProps> = (props) => {
                     ))}
                 </Select>
             </FormRow>
-            <FormRow>
+            <ButtonContainer>
                 <Button onSubmit={handleSubmit}>
                     Calculate
                 </Button>
-            </FormRow>
+            </ButtonContainer>
         </FormWrapper>
     );
 };

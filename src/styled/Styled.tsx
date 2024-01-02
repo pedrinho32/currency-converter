@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     text-align: center;
     overflow:hidden;
+    font-family: sans-serif;
 `;
 
 export const Table = styled.table`
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 0.9em;
-    font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     margin-left: auto;
@@ -37,6 +37,7 @@ export const BodyRow = styled.tr`
 export const Label = styled.label`
     text-align: center;
     padding: 4px 5px;
+    font-size: 15px;
 `;
 
 export const Input = styled.input`
@@ -64,21 +65,29 @@ export const FormWrapper = styled.form`
     text-align: left;
 `;
 
+export const ButtonContainer = styled.div`
+    margin:10px;
+    display: flex;
+    justify-content: center;
+`;
+
 export const Button = styled.button`
     border-radius: 10px;
-    height: 25px;
-    width: 100px;
+    border: none;
+    height: 30px;
+    width: 120px;
     background-color:#1F618D;
     color: #fff;
-    &:hover,focus {
-        background-color: #008fb3;
+    font-size: 15px;
+    &:hover,
+    &:focus {
+        background-color: #5095BC;
     }
 `;
 
 export const ResultWrapperDiv = styled.div`
     width: 400px;
     height: auto;
-    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     display: center;
@@ -86,6 +95,7 @@ export const ResultWrapperDiv = styled.div`
     text-align: center;
     font-size: 22px;
     background-color: #CFE5E1;
-    color: #1F618D;
+    color: #428A6E;
     border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
 `;
