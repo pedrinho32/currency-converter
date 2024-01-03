@@ -38,47 +38,42 @@ export const BodyRow = styled.tr`
 `;
 
 export const Label = styled.label`
-    text-align: center;
-    padding: 4px 5px;
+    text-align: left;
     font-size: 0.9em;
 `;
 
 export const Input = styled.input`
     text-align: right;
     padding: 3px 3px;
-    width: 92px;
-    margin-left: 20px;
+    width: 90px;
     border-radius: 5px;
+    float: right;
 `;
 
 export const Select = styled.select`
     text-align: center;
     padding: 3px 3px;
-    margin-left: 20px;
     width: 100px;
     border-radius: 5px;
+    float: right;
 `;
 
 export const FormRow = styled.div`
-    padding: 5px 15px;
+    padding: 5px 0px;
+    margin-top: 10px;
 `;
 
 export const FormWrapper = styled.form`
     display: inline-block;
     text-align: left;
-`;
-
-export const ButtonContainer = styled.div`
-    margin-top:10px;
-    display: flex;
-    justify-content: center;
+    width: 240px;
 `;
 
 export const Button = styled.button`
     border-radius: 10px;
     border: none;
     height: 30px;
-    width: 230px;
+    width: 240px;
     background-color:#1F618D;
     color: #fff;
     font-size: 1em;
@@ -89,7 +84,7 @@ export const Button = styled.button`
 `;
 
 export const ResultWrapperDiv = styled.div`
-    width: 400px;
+    width: 390px;
     height: auto;
     margin-top: 15px;
     margin-left: auto;

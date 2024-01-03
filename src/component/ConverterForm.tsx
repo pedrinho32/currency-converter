@@ -1,4 +1,4 @@
-import {Button, ButtonContainer, FormRow, FormWrapper, Input, Label, Select} from "../styled/Styled";
+import {Button, FormRow, FormWrapper, Input, Label, Select} from "../styled/Styled";
 import React, {FormEvent, useState} from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
 import {ResultMessage} from "../model/ResultMessage";
@@ -67,11 +67,11 @@ const ConverterForm: React.FC<FormProps> = (props) => {
                     ))}
                 </Select>
             </FormRow>
-            <ButtonContainer>
-                <Button onSubmit={handleSubmit}>
-                    Calculate
-                </Button>
-            </ButtonContainer>
+            <FormRow>
+                    <Button onSubmit={handleSubmit}>
+                        Calculate
+                    </Button>
+            </FormRow>
         </FormWrapper>
     );
 };
