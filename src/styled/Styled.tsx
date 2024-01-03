@@ -6,14 +6,17 @@ export const Wrapper = styled.div`
     font-family: sans-serif;
 `;
 
-export const Table = styled.table`
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 0.9em;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+export const TableWrapper = styled.div`
     margin-left: auto;
     margin-right: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 400px;
+`;
+
+export const Table = styled.table`
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
 `;
 
@@ -37,7 +40,7 @@ export const BodyRow = styled.tr`
 export const Label = styled.label`
     text-align: center;
     padding: 4px 5px;
-    font-size: 15px;
+    font-size: 0.9em;
 `;
 
 export const Input = styled.input`
@@ -78,7 +81,7 @@ export const Button = styled.button`
     width: 230px;
     background-color:#1F618D;
     color: #fff;
-    font-size: 15px;
+    font-size: 1em;
     &:hover,
     &:focus {
         background-color: #5095BC;
@@ -94,9 +97,14 @@ export const ResultWrapperDiv = styled.div`
     display: center;
     padding: 5px;
     text-align: center;
-    font-size: 22px;
+    font-size: 1.4em;
     background-color: #CFE5E1;
     color: #428A6E;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
+`;
+
+export const Note = styled.p`
+    text-align: left;
+    font-size: 0.75em;
 `;

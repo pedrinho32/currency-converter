@@ -1,7 +1,7 @@
 import {Button, ButtonContainer, FormRow, FormWrapper, Input, Label, Select} from "../styled/Styled";
 import React, {FormEvent, useState} from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
-import {ResultMessage} from "./ResultPanel";
+import {ResultMessage} from "../model/ResultMessage";
 
 interface FormProps {
     currencies: CurrencyInfo[];
@@ -26,12 +26,12 @@ const ConverterForm: React.FC<FormProps> = (props) => {
         ev.preventDefault();
         const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode);
         if (targetCurrency && inputAmount) {
-            const resultAmount = (Number(inputAmount) ?? 0) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
+            const resultAmount = Number(inputAmount) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
                 messageText: `${inputAmount.toLocaleString()} CZK = `,
                 resultAmount: roundedResultAmount.toLocaleString(),
-                currency: selectedCurrencyCode
+                targetCurrencyCode: selectedCurrencyCode
             });
         } else if (!inputAmount) {
             setResultMessage({messageText: "Please input amount to convert"})

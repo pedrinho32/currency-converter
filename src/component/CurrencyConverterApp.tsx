@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useCnbApi} from "../hook/CnbApiHook";
 import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 import {CurrencyInfo} from "../model/CurrencyInfo";
-import {Wrapper} from "../styled/Styled";
-import ResultPanel, {ResultMessage} from "./ResultPanel";
+import {Note, ResultWrapperDiv, TableWrapper, Wrapper} from "../styled/Styled";
 import ConverterForm from "./ConverterForm";
+import {ResultMessage} from "../model/ResultMessage";
 
 interface FetchedCurrencies extends CurrencyTableProps {
     dateValid: string;
@@ -43,24 +43,29 @@ const CurrencyConverterApp: React.FC = () => {
     return (
         <Wrapper>
             <h1>CURRENCY CONVERTER</h1>
-
             {fetchedCurrencies &&
             <>
                 <ConverterForm
                     currencies={fetchedCurrencies.currencies}
                     setResultMessage={setResultMessage}
                 />
-                {resultMessage &&
-                <ResultPanel
-                    messageText={resultMessage?.messageText}
-                    resultAmount={resultMessage?.resultAmount}
-                    currency={resultMessage?.currency}
-                />
+                {resultMessage?.messageText &&
+                <ResultWrapperDiv>
+                    {resultMessage.messageText}
+                    <b>
+                        {resultMessage.resultAmount}
+                        &nbsp;
+                        {resultMessage.targetCurrencyCode}
+                    </b>
+                </ResultWrapperDiv>
                 }
-                <CurrencyTable
-                    currencies={fetchedCurrencies.currencies}
-                    headerRow={fetchedCurrencies.headerRow}
-                />
+                <TableWrapper>
+                    <CurrencyTable
+                        currencies={fetchedCurrencies.currencies}
+                        headerRow={fetchedCurrencies.headerRow}
+                    />
+                    <Note>{`* Rates are valid for ${fetchedCurrencies.dateValid}`}</Note>
+                </TableWrapper>
             </>
             }
         </Wrapper>
