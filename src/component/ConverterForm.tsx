@@ -24,8 +24,8 @@ const ConverterForm: React.FC<FormProps> = (props) => {
 
     const handleSubmit = (ev: React.FormEvent<HTMLFormElement> | FormEvent<HTMLButtonElement>) => {
         ev.preventDefault();
-        const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode);
-        if (targetCurrency && inputAmount) {
+        const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode)!;
+        if (inputAmount) {
             const resultAmount = Number(inputAmount) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
@@ -33,10 +33,8 @@ const ConverterForm: React.FC<FormProps> = (props) => {
                 resultAmount: roundedResultAmount.toLocaleString(),
                 targetCurrencyCode: selectedCurrencyCode
             });
-        } else if (!inputAmount) {
-            setResultMessage({messageText: "Please input amount to convert"})
         } else {
-            setResultMessage({messageText: "Currency conversion failed"})
+            setResultMessage({messageText: "Please input amount to convert"})
         }
     };
 

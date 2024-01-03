@@ -17,16 +17,21 @@ const CurrencyConverterApp: React.FC = () => {
     const [resultMessage, setResultMessage] = useState<ResultMessage>();
 
     useEffect(() => {
-        fetchRates().then(resp => {
-            const respLines: string[] = resp.data.split("\n");
-            const currenciesLines = respLines.slice(2, respLines.length - 1);
+        fetchRates()
+            .then(resp => {
+                const respLines: string[] = resp.data.split("\n");
+                const currenciesLines = respLines.slice(2, respLines.length - 1);
 
-            setFetchedCurrencies({
-                dateValid: respLines[0].split("#")[0].trim(),
-                headerRow: parseLineToCurrency(respLines[1]),
-                currencies: currenciesLines.map(line => parseLineToCurrency(line)),
+                setFetchedCurrencies({
+                    dateValid: respLines[0].split("#")[0].trim(),
+                    headerRow: parseLineToCurrency(respLines[1]),
+                    currencies: currenciesLines.map(line => parseLineToCurrency(line)),
+                });
+            })
+            .catch(err => {
+                setResultMessage({messageText: "We're sorry, current rates are not available. Please try again later."});
+                console.error("An error occurred while fetching rates from CNB:", err)
             });
-        });
     }, []);
 
     const parseLineToCurrency = (line: string): CurrencyInfo => {
