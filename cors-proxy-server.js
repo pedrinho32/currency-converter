@@ -1,11 +1,14 @@
 const express = require('express');
-const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 app.get('/api/exchange-rates', async (req, res) => {
     try {
