@@ -57,7 +57,7 @@ const CurrencyConverterApp: React.FC = () => {
                         currencies={fetchedCurrencies.currencies}
                         setResultMessage={setResultMessage}
                     />
-                    {resultMessage?.messageText &&
+                    {resultMessage &&
                     <ResultWrapperDiv>
                         {resultMessage.messageText}
                         <b>

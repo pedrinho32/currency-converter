@@ -1,6 +1,6 @@
 import React from "react";
 import {CurrencyInfo} from "../model/CurrencyInfo";
-import {BodyRow, Table, TableCell, TableHead} from "../styled/Styled";
+import {BodyRow, Table, TableCell, TableCellAmount, TableHead} from "../styled/Styled";
 
 export interface CurrencyTableProps {
     headerRow: CurrencyInfo;
@@ -26,7 +26,7 @@ const CurrencyTable: React.FC<CurrencyTableProps> = (props) => {
                 <BodyRow key={currencyInfo.code}>
                     <TableCell>{currencyInfo.country}</TableCell>
                     <TableCell>{currencyInfo.currency}</TableCell>
-                    <TableCell>{currencyInfo.amount}</TableCell>
+                    <TableCellAmount>{currencyInfo.amount}</TableCellAmount>
                     <TableCell>{currencyInfo.code}</TableCell>
                     <TableCell>{currencyInfo.rate}</TableCell>
                 </BodyRow>

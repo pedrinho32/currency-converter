@@ -33,6 +33,10 @@ export const TableCell = styled.td`
     padding: 8px 10px;
 `;
 
+export const TableCellAmount = styled(TableCell)`
+    text-align: center;
+`;
+
 export const BodyRow = styled.tr`
     border-bottom: 1px solid #dddddd;
 `;
@@ -45,15 +49,15 @@ export const Label = styled.label`
 export const Input = styled.input`
     text-align: right;
     padding: 3px 3px;
-    width: 90px;
+    width: 150px;
     border-radius: 5px;
     float: right;
 `;
 
 export const Select = styled.select`
-    text-align: center;
+    text-align: left;
     padding: 3px 3px;
-    width: 100px;
+    width: 160px;
     border-radius: 5px;
     float: right;
 `;
@@ -66,14 +70,16 @@ export const FormRow = styled.div`
 export const FormWrapper = styled.form`
     display: inline-block;
     text-align: left;
-    width: 240px;
+    width: 320px;
 `;
 
 export const Button = styled.button`
+    float: right;
     border-radius: 10px;
     border: none;
+    margin-right: 80px;
     height: 30px;
-    width: 240px;
+    width: 150px;
     background-color:#1F618D;
     color: #fff;
     font-size: 1em;
@@ -83,10 +89,14 @@ export const Button = styled.button`
     }
 `;
 
+export const ButtonWrapper = styled.div`
+    margin-top: 20px;
+`;
+
 export const ResultWrapperDiv = styled.div`
     width: 390px;
     height: auto;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     display: center;

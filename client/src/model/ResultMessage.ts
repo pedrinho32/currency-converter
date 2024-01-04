@@ -1,5 +1,5 @@
 export interface ResultMessage {
-    messageText: string;
+    messageText?: string;
     resultAmount?: string;
     targetCurrencyCode?: string;
 }
