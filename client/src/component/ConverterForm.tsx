@@ -11,7 +11,7 @@ interface FormProps {
 const ConverterForm: React.FC<FormProps> = (props) => {
     const {currencies, setResultMessage} = props;
 
-    const [inputAmount, setInputAmount] = useState(0);
+    const [inputAmount, setInputAmount] = useState<number>();
     const [selectedCurrencyCode, setSelectedCurrencyCode] = useState("EUR");
 
     const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,8 +47,8 @@ const ConverterForm: React.FC<FormProps> = (props) => {
             <FormRow>
                 <Label>Amount in CZK</Label>
                 <Input
-                    value={inputAmount}
                     onChange={handleInputChange}
+                    placeholder="0"
                 />
             </FormRow>
             <FormRow>

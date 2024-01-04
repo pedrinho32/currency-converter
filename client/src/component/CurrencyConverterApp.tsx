@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import {useCnbApi} from "../hook/CnbApiHook";
-import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 import {CurrencyInfo} from "../model/CurrencyInfo";
+import {ResultMessage} from "../model/ResultMessage";
+// @ts-ignore
+import Spinner from "../Spinner-1s-200px.gif";
 import {Note, ResultWrapperDiv, TableWrapper, Wrapper} from "../styled/Styled";
 import ConverterForm from "./ConverterForm";
-import {ResultMessage} from "../model/ResultMessage";
+import CurrencyTable, {CurrencyTableProps} from "./CurrencyTable";
 
 interface FetchedCurrencies extends CurrencyTableProps {
     dateValid: string;
@@ -30,7 +32,7 @@ const CurrencyConverterApp: React.FC = () => {
             })
             .catch(err => {
                 setResultMessage({messageText: "We're sorry, current rates are not available. Please try again later."});
-                console.error("An error occurred while fetching rates from CNB:", err)
+                console.error("An error occurred while fetching rates from CNB:", err);
             });
     }, []);
 
@@ -48,30 +50,31 @@ const CurrencyConverterApp: React.FC = () => {
     return (
         <Wrapper>
             <h1>CURRENCY CONVERTER</h1>
-            {fetchedCurrencies &&
-            <>
-                <ConverterForm
-                    currencies={fetchedCurrencies.currencies}
-                    setResultMessage={setResultMessage}
-                />
-                {resultMessage?.messageText &&
-                <ResultWrapperDiv>
-                    {resultMessage.messageText}
-                    <b>
-                        {resultMessage.resultAmount}
-                        &nbsp;
-                        {resultMessage.targetCurrencyCode}
-                    </b>
-                </ResultWrapperDiv>
-                }
-                <TableWrapper>
-                    <CurrencyTable
+            {!fetchedCurrencies
+                ? <img src={Spinner} alt="Loading indicator"/>
+                : <>
+                    <ConverterForm
                         currencies={fetchedCurrencies.currencies}
-                        headerRow={fetchedCurrencies.headerRow}
+                        setResultMessage={setResultMessage}
                     />
-                    <Note>{`* Rates are valid for ${fetchedCurrencies.dateValid}`}</Note>
-                </TableWrapper>
-            </>
+                    {resultMessage?.messageText &&
+                    <ResultWrapperDiv>
+                        {resultMessage.messageText}
+                        <b>
+                            {resultMessage.resultAmount}
+                            &nbsp;
+                            {resultMessage.targetCurrencyCode}
+                        </b>
+                    </ResultWrapperDiv>
+                    }
+                    <TableWrapper>
+                        <CurrencyTable
+                            currencies={fetchedCurrencies.currencies}
+                            headerRow={fetchedCurrencies.headerRow}
+                        />
+                        <Note>{`* Rates are valid for ${fetchedCurrencies.dateValid}`}</Note>
+                    </TableWrapper>
+                </>
             }
         </Wrapper>
     );
