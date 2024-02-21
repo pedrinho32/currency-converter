@@ -30,13 +30,13 @@ const ConverterForm: React.FC<FormProps> = (props) => {
         ev.preventDefault();
         const targetCurrency = currencies.find(currency => currency.code === selectedCurrencyCode)!;
         if (inputAmount) {
-            const resultAmount = Number(inputAmount) / Number(targetCurrency.rate) * Number(targetCurrency.amount);
+            const resultAmount = Number(inputAmount) / targetCurrency.rate * targetCurrency.amount;
             const roundedResultAmount = Math.round(resultAmount * 100) / 100;
             setResultMessage({
                 resultAmount: roundedResultAmount.toLocaleString(),
                 targetCurrencyCode: selectedCurrencyCode
             });
-            setInputShownValue(inputAmount.toLocaleString())
+            setInputShownValue(inputAmount.toLocaleString());
             inputRef.current?.blur();
         } else {
             setResultMessage({messageText: "Please input amount to convert"})

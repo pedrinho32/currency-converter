@@ -1,9 +1,9 @@
 import React from "react";
-import {CurrencyInfo} from "../model/CurrencyInfo";
+import {CurrencyInfo, HeaderInfo} from "../model/CurrencyInfo";
 import {BodyRow, Table, TableCell, TableCellAmount, TableHead} from "../styled/Styled";
 
 export interface CurrencyTableProps {
-    headerRow: CurrencyInfo;
+    headerRow: HeaderInfo;
     currencies: CurrencyInfo[];
 }
 
